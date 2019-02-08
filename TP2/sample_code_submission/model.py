@@ -18,7 +18,7 @@ class model(BaseEstimator):
         self.selected_feat = 0 	# The chosen variable/feature
         self.theta1 = 0 		# The first threshold
         self.theta2 = 0			# The second threshold
-        self.is_trained=False
+        self.is_trained = False
 
     def fit(self, X, Y, F=[]):
         ''' The method "fit" trains a super-simple classifier '''
@@ -35,7 +35,7 @@ class model(BaseEstimator):
         # Finally is sets two decision thresholds
         self.theta1 = (mu0+mu1)/2.
         self.theta2 = (mu1+mu2)/2.
-        self.is_trained=True
+        self.is_trained = True
 
     def predict(self, X):
         ''' The method "predict" classifies new test examples '''
@@ -46,7 +46,7 @@ class model(BaseEstimator):
         # then classify using the selected feature according to the cutoff thresholds
         Yhat[best_feat<self.theta1] = 0											# Class 0
         Yhat[np.all([self.theta1<=best_feat, best_feat<=self.theta2], 0)] = 1	# Class 1
-        Yhat[best_feat>self.theta2] = 2 										# Class 2
+        Yhat[best_feat>self.theta2] = 2										# Class 2
         return Yhat
 
     def save(self, path="./"):
